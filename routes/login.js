@@ -1,11 +1,17 @@
 var passport = require('passport'),
     Account = require('../model/account');
-    Article = require('../model/article');
+    Article = require('../model/article'),
+    fs = require('fs');
 
 module.exports = function (app) {
     
     app.get('/', function (req, res) {
-        res.render('index', { user : req.user });
+        res.render('index', { user : req.user});
+        if(!req.user ){
+        console.log('main User Info 1', req.user);
+        }else{
+             console.log('main User Info 2', req.user.username);
+        }
     });
 
     app.get('/register', function(req, res) {
@@ -27,10 +33,10 @@ module.exports = function (app) {
             }
          
             console.log('등록 완료 : username' , req.body.username );
-            console.log('등록 완료 : birthday' , req.body.birthday );
-            res.redirect('/login.html');
+            res.redirect('/login');
         });
     });
+
 
     app.get('/login', function(req, res) {
         res.render('login', { user : req.user });
@@ -42,12 +48,46 @@ module.exports = function (app) {
     });
 
     app.post('/login', passport.authenticate('local'), function(req, res) {
-        res.redirect('/index.html');
+        res.redirect('/');
     });
 
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
+    });
+
+
+
+    app.post('/upload', function(req, res){
+
+        console.log('POST');
+       // var url = req.body.R_URL;
+        var name = req.body.R_NAME;
+        var blob = req.body.R_blob;
+        console.log(name);
+        console.log(blob);
+
+
+        base64Data = blob.replace(/^data:audio\/wav;base64,/,""),
+        binaryData = new Buffer(base64Data, 'base64').toString('binary');
+        
+        var filePath = __dirname + "\\files\\"+ name;
+
+        fs.writeFile(filePath, binaryData, "binary", function(error){
+                if(error){
+                    throw error;
+                }else{
+                    console.log('FILE is made');
+                    res.redirect('/');
+                }
+            });
+    
+       
+    });
+
+    app.get('/upload', function(req, res){
+     console.log('get');
+        res.render('index', {user : req.user});
     });
     
 };

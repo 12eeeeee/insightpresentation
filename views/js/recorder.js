@@ -20,7 +20,7 @@ DEALINGS IN THE SOFTWARE.
 (function(window){
 
   var WORKER_PATH = 'js/recorderWorker.js';
-
+  var STORE = new Object();
   var Recorder = function(source, cfg){
     var config = cfg || {};
     var bufferLen = config.bufferLen || 4096;
@@ -107,6 +107,18 @@ DEALINGS IN THE SOFTWARE.
   };
 
   Recorder.forceDownload = function(blob, filename){
+    ////서버에 저장 
+    var reader = new FileReader();
+    reader.onload = function(event){
+        STORE.R_NAME = filename;
+        STORE.R_blob = event.target.result;
+        STORE.R_blob = STORE.R_blob.replace(/^data:audio\/wav;base64,/,"");
+    };
+    
+    reader.readAsDataURL(blob);
+
+    return;
+///////////////////////////////////////////////////  기기에 저장 
     var url = (window.URL || window.webkitURL).createObjectURL(blob);
     var link = window.document.createElement('a');
     link.href = url;
@@ -114,8 +126,10 @@ DEALINGS IN THE SOFTWARE.
     var click = document.createEvent("Event");
     click.initEvent("click", true, true);
     link.dispatchEvent(click);
+
+
   }
 
   window.Recorder = Recorder;
-
+  window.STORE = STORE;
 })(window);

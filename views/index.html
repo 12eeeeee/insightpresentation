@@ -17,13 +17,12 @@
 <meta charset="UTF-8">
 <meta content="width=device-width,maximum-scale=1, user-scalable=no" name="viewport">
 <title>jQuery Mobile 웹 응용 프로그램</title>
-
+	  
 <link type="text/css" rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.css">
 	<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
-    <!--
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.4.0/fabric.min.js"></script>
-	-->
+
 <!--
 <link type="text/css" rel="stylesheet" href="http://code.jquery.com/mobile/1.3.0/jquery.mobile-1.3.0.min.css">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
@@ -58,24 +57,21 @@
 <script src="js/signature.js"></script>-->
 
 <script type="text/javascript">
+	 var sList = [];
+
+	
+
    function capture(){
-               
+              	window.sList = sList;
+              	
+              	
                var canvas = document.getElementById('canvas22');
                var ctx1    = canvas.getContext('2d');
 
-               var src     = canvas.toDataURL("image/png"); 
-           //    alert(src);
+              
 
-               var img     = document.createElement('img');
-               img.src     = src; 
-               img.style.width = '150px';
-               img.style.height = '100px';
-               img.style.border = 'solid';
-               img.style.cursor = 'pointer'; // 커서 지정
 
-               document.getElementById('board').appendChild(img);
-                           
-            
+            	
                img.onclick = function(){
             
                var canvas = document.getElementById('canvas22');
@@ -94,7 +90,14 @@
                 var target = document.getElementById('target');
                //20140213 target.innerHTML = "<img src='"+canvas.toDataURL().toString()+"'>"; //타겟 엘리먼트에 innerHTML
                };
+
+
+               
+        
+    
       }
+
+     
       function del(){
             document.getElementById('board').innerHTML = '';
       }
@@ -103,7 +106,7 @@
 
 
 
-<!--------------------------------list동적추가 스크립트 코드  --------------------->
+<!--------------------------------list동적추가 스크립트 코드  ------------------- -->
 <script type="text/javascript">
 	var num = 0;
 	function addItem() {
@@ -125,7 +128,7 @@
 </script>  
 
 
- <!----------------------메뉴테이블들  효과 크기 --------->
+ <!----------------------메뉴테이블들  효과 크기 ------- -->
    <style type="text/css">
 #wrap {
 	height: 97%;
@@ -253,9 +256,17 @@ table {
 		</div>
 
 		<div data-role="content" id="wrap">
-			<table>
+			
+				<table>
+					<% if(user) { %>
+					<div>
+					<h2> WELCOME <%= user.username%></h2>
+					<% } else { %>
+					<h3>	WELCOME!  </h3>
+		
+					<% }%>
 				<tr id="c">
-					<td><a href="#Plist" data-role="button" id="a"  data-transition="flip"><br />
+					<td><a href="/Plist" data-role="button" id="a"  data-transition="flip"><br />
 						<br />
                         <br />
                   		<br /><h2>Are<br />you<br/>Presenter?<br/><br/><br/><br/><br/></h2></a></td>
@@ -265,7 +276,12 @@ table {
                        	<br /><h2>Are<br>you<br/>Listener?<br/><br/><br/><br/><br/></h2></a></td>
 				</tr>
 				<tr id="d">
-					<td colspan="2"><a href="login.html" data-transition="flip" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="b" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-d"><span class="ui-btn-inner"><span class="ui-btn-text"><h3>Login</h3></span></span></a></td>
+					<td colspan="2">
+						<% if(user) {%>
+						<a href="/logout" data-transition="flip" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="d" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-d"><span class="ui-btn-inner"><span class="ui-btn-text"><h3>Logout</h3></span></span></a>
+						<%} else {%>
+						<a href="login.html" data-transition="flip" data-role="button" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="d" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-d"><span class="ui-btn-inner"><span class="ui-btn-text"><h3>Login</h3></span></span></a>
+						<% } %></td>
 				</tr>
 			</table>
             <center>
@@ -278,55 +294,6 @@ table {
 
 
 <!--------------------- 발표자 PPT목록 ----------------------- -->
-
-<div data-theme="b" id="Plist" data-role="page" data-url="Plist">
-
-<div class="bmenu" id="menu" data-position="right" data-role="panel">
-			<ul data-theme="a" data-inset="true" data-role="listview">
-				<li data-role="list-divider">Insight Presentation</li>
-				<li><a data-panel="main" href="#page">Home</a></li>
-				<li><a href="#page">로그아웃</a></li>
-				<li><a href="#Plist">PPT목록</a></li>
-				<li><a data-panel="main" href="#Plist">마이페이지</a></li>
-			</ul>
-		</div>
-		<div data-role="header">
-	 		<a data-rel="back" data-icon="back" data-role="button" href="#">back</a>
-			<h1 align="center" data-transition="flip">PPT 목록 보기</h1>
-			<a data-transition="flip" data-icon="grid" data-role="button" href="#menu">menu</a>
-
-		</div>
-
-		<div data-role="content">
-      
-
-        
-        
-			<ul data-role="listview" id="list1">
-				<li data-icon="plus"><a  href="#ptinfo">Add</a></li>
-				<li><a href="#ptinfo">Item1</a></li>
-			</ul>
-            
-              <script type="text/javascript">
-				var num = 0;
-				function addItem() {
-
-				var list1 = $("#list1").append(
-							"<li><a href='#Plist' id='list'"+(++num)+">Item" + (num) + "</a></li>");
-					list1.listview("refresh");
-					}
-</script>
-			
-			<div style="margin-top: 30px;">
-				<a data-icon="check" data-role="button" href="#pmenu">Select</a>
-
-			</div>
-		</div>
-
-		<div data-position="fixed" data-role="footer">
-			<h4>&copy;Insight&nbsp;presentation</h4>
-		</div>
-	</div>
 
     
  <!--------------------- 청중 PPT목록 ----------------------- -->
@@ -453,7 +420,7 @@ table {
 		</div>
         
 		<div data-role="content" data-type="horizontal">            
-   
+   		<form action="/canvas" method="post" id="canvasForm" onSubmit="alert('submit!')">
         <table style="width: 100%" style="height:100%"  >
 	   <tr width=100%>
 		  <td align="center">
@@ -466,6 +433,7 @@ table {
        	   
 		<tr width="100%">
         <td width="100%" align="center">
+        	<form >
               	<div data-role="controlgroup" data-type="horizontal" align="center">
 				  <input type="button" onclick="g_circle()" value="circle"  data-inline="true">
 				  <input type="button" onclick="g_rect()" value="rectangular" data-inline="true">
@@ -480,22 +448,24 @@ table {
 				  <label for="color" style="margin-left:10px" data-inline="true">Color: </label>
 				  <input type="color" style="width:40px" bind-value-to="fill" id="picker" data-inline="true">
 				  <input type="button" onclick="bgColor_()"  value="bgcolor" data-inline="true"></button>
-                  <button id="capture" onclick="capture()" data-inline="true">Capture</button>
-				 <input type="button" value=" clear All " onclick="del()" data-inline="true">
-                 <input type="button" onclick="save_()" value="save" data-inline="true">
-                </div>
+                  <button id="capture" onclick="capture1()" data-inline="true">Capture</button>
+				  <input type="button" value=" clear All " onclick="del()" data-inline="true">
+                  <input type="button" onclick="save_()" value="save" data-inline="true">
+           </div>
+
 			</td>
             </tr>
+        </form>
         <tr width="100%">
         <td width="100%" >
         		<div id="board"></div>
-              
+              <div id ="board2"></div>
         </td>
          </tr>
 	  </table>
       
        <script>
-        
+        var currentSlide=0;
         var json;
         var canvas = this.__canvas = new fabric.Canvas('canvas22', {isDrawingMode: false}); 
             
@@ -577,6 +547,93 @@ table {
                } 
              };
            });
+
+		  var jList = [];
+         
+  	
+
+  		function capture1(){
+  			 var src     = canvas.toDataURL("image/png"); 
+           //    alert(src);
+
+               var img     = document.createElement('img');
+               img.src     = src; 
+               img.style.width = '150px';
+               img.style.height = '100px';
+               img.style.border = 'solid';
+               img.style.cursor = 'pointer'; // 커서 지정
+
+               //document.getElementById('board').appendChild(img);
+               sList.push(img); 
+           	   
+           	   var PtView = document.getElementById('board2');
+           	   var id = document.createElement('div');
+               id.innerHTML = '<img style="width:150px;height:100px;border:solid;cursor:pointer" src ="'+ img.src +'" class = "sList" onclick="load1('+ (sList.length-1)+')">';
+
+               PtView.appendChild(id);
+
+           		/*for(var i=0; i < sList.length; i++)
+            	{
+            		var id = sList +'' + i;
+            		//var source = 
+            		//if(sList[i+1] == undefined){
+            		alert(i);
+            		alert(sList[i].src);
+            		id = document.createElement('div');
+            		id.src = sList[i].src;
+            		id.innerHTML = '<img src =" '+ sList[i].src +'" class = "sList" onclick="load1('+i+')">';
+
+            		PtView.appendChild(id);
+            		//}
+
+
+            	}*/
+
+            	/*for(i in sList)
+            	{
+            		var id = sList +'' + i;
+            		//var source = 
+            		if(sList[i+1] == undefined){
+            		alert(i);
+            		alert(sList[i].src);
+            		id = document.createElement('div');
+            		id.src = sList[i].src;
+            		id.innerHTML = '<img src =" '+ sList[i].src +'" class = "sList" onclick="load1('+i+')">';
+
+            		PtView.appendChild(id);
+            		}
+
+
+            	}*/
+
+
+
+ 			var json1 = JSON.stringify(canvas);
+              jList.push(json1);
+              alert('JList :'+ (sList.length-1)+'에 저장됨 ');
+              alert('capture!');
+            //  currentSlide = (sList.length-1);
+  		}
+
+
+
+ 		function load1(i){
+	      	alert('클릭 된 '+i);
+	   		alert('작업하던 '+currentSlide);
+	      
+          //  jList[currentSlide] = JSON.stringify(canvas);
+            alert('이전' + currentSlide); //load되기 직전 페이지 캡쳐 
+            
+	    	//jList[i] = JSON.stringify(canvas);
+	    //  ctx1.clearRect(0,0,canvas.width, canvas.height);
+	      	canvas.clear();
+
+	      	alert('clicked!');
+	      	canvas.loadFromJSON(jList[i], canvas.renderAll.bind(canvas));
+	      	alert('Load');
+	      	currentSlide = i;  
+	      	alert('바뀐 ' + currentSlide);
+      }
 
 
         </script>			   
@@ -697,8 +754,9 @@ table {
 <!--------------------- 발표자 리모컨 2 (실전) real_control----------------------------->
 	<!--------	실전은 녹음 하자마자 청중들 다시듣기 공유로 서버로 넘어가기 + list목록에 추가 -------->
 
-
 <div data-role="page" id="real_control" data-theme="b">
+	<form>
+	</form>
 
 		<div data-role="panel" data-position="right" id="menu" class="bmenu">
 			<ul data-role="listview" data-inset="true" data-theme="b">
@@ -709,37 +767,49 @@ table {
 				<li><a href="#my" data-panel="main">마이페이지</a></li>
 			</ul>
 		</div>
-
-
-
 		<div data-role="header">
 			<a href="#" data-role="button" data-icon="back" data-rel="back">back</a>
 			<h1 align="center">PPT 발표모드</h1>
-			<a data-transition="flip" data-icon="grid" data-role="button" href="#menu">menu</a>
-          
+			<a data-transition="flip" data-icon="grid" data-role="button" href="#menu">menu</a>       
 		</div>
         
-        
+ <script>
+// document.write("<script type='text/javascript' src='/js/recorder.js'><"+"/script>"); 
+ 	function printInfo(){
+
+ 		//var ASTORE = new STORE();
+ 		document.getElementById("R_NAME").value = STORE.R_NAME;
+
+ 		document.getElementById("R_blob").value = STORE.R_blob;
+
+ 	}
+ </script>
+
 	<div data-role="content">
+	
         <table style="width: 100%" style="height:100%">
+        	
 				<tr>
 					<td colspan=2>
-					
-                      <div>
-           				<img id="record_" src="mic128.png" onclick="toggleRecording(this);Example1.Timer.toggle();">
-						<img id="init_" src="init.png" onclick="Example1.resetStopwatch();">
-                		<img id="save" src="save.svg" onclick="saveAudio();">
-                		<span id="stopwatch">00:00:00</span>
-            		</div>
+						<form id="recFrm" method="post" action="/upload" enctype="multipart/form-data" onSubmit="printInfo()">
+                     		 <div>
+           						<img id="record_" src="mic128.png" onclick="toggleRecording(this);Example1.Timer.toggle();">
+								<img id="init_" src="init.png" onclick="Example1.resetStopwatch();">
+                				<img id="save" src="save.svg" onclick="saveAudio();">
+                				<span id="stopwatch">00:00:00</span>
+                				<input type="hidden" id = "R_NAME" name="R_NAME"/>
+
+                				<input type="hidden" id = "R_blob" name="R_blob"/>
+                				<input type="image" src="save.svg" alt="Submit Form" onclick="saveAudio();"/>
+            				</div> 
+            			</form>
 					</td>
 				</tr>
-				<tr>
+						
 
-
-					<td colspan=2 width="100%">슬라이드보이는창</td>
-
-
-				</tr>
+			<tr>
+				<td colspan=2 width="100%">슬라이드보이는창</td>
+			</tr>
 				<tr>
 					<td colspan=2 width="100%">
 						<center>
@@ -782,8 +852,6 @@ table {
 	</div>
 
         
-        
-
 
 <!--------------------- 발표자 평가 확인 Form #check_comment-------------------------->
 <div data-theme="b" id="check_comment" data-role="page" data-url="check_comment">

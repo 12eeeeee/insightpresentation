@@ -4,7 +4,7 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Express'});
 };
 
 exports.loggedin = function(req, res){
@@ -15,7 +15,6 @@ exports.loggedin = function(req, res){
 exports.register = function(req, res){
 	console.log('register');
   res.render('register', {title: 'Express', user: req.user});
-
 };
 
 exports.ctrReveal = function(req, res){
@@ -25,6 +24,10 @@ exports.ctrReveal = function(req, res){
 exports.reveal = function(req, res){
   res.render('reveal', {title: 'Express', user: req.user});
 
+};
+
+exports.upload = function(req, res){
+  res.render('upload', {title: 'Express', user: req.user});
 };
 
 exports.createArticle = function(req, res){

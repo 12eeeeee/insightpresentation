@@ -13,7 +13,8 @@ var express = require('express')
     , path = require('path')
     , mongoose = require('mongoose')
     , passport = require('passport')
-    , LocalStrategy = require('passport-local').Strategy;
+    , LocalStrategy = require('passport-local').Strategy
+    , ejs = require('ejs');
 
 var app = express();
 
@@ -21,6 +22,8 @@ app.use(express.bodyParser());
 /////////////////////////////////////////////////로그인
 var Account = require('./model/account');
 passport.use(new LocalStrategy(Account.authenticate()));
+app.use(express.cookieParser());
+app.use(express.cookieSession({secret: 'asdfasdfasdf'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -96,7 +99,8 @@ app.configure('production', function(){
 
 // all environments
 app.set('port', process.env.PORT || 3000);
-app.engine('html', cons.swig);
+app.engine('.html', ejs.__express);
+//app.engine('html', cons.swig);
 app.set('view engine', 'html');
 app.use (express.static(__dirname + '/views'));
 app.set('views', __dirname + '/views');
