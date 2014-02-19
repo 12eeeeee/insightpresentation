@@ -126,7 +126,7 @@ if ('development' == app.get('env')) {
 }
 app.get('/', routes.index);
 app.get('/ctrReveal', routes.ctrReveal);
-app.post( '/createArticle',      routes.createArticle );
+app.post( '/createArticle', routes.createArticle );
 //app.get('/reveal', routes.reveal);
 
 /*app.get('/fbauth', passport.authenticate('facebook', {scope: 'email'}));

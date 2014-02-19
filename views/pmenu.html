@@ -19,10 +19,10 @@
 			<h1 align="center">Presenter&nbsp;Mode</h1>
 			<a data-transition="flip" data-icon="grid" data-role="button" href="#menu">menu</a>
 		</div>
-		<h2> <center> Title : <%= cPage %>  </center></h2>
+		<h2> <center> Title : <%=cPage%>  </center></h2>
 		<div id="wrap" data-role="content">
         <div style="margin-top: 60px;">
-
+        	
 			<table>
 				<tbody><tr id="c1">
 					<td><a id="a1" data-transition="flip" data-role="button" href="#canvas"><br/><br/>PPT<br>Making<br><br/>
@@ -31,7 +31,7 @@
 					</a></td>
 				</tr>
 				<tr id="c1">
-					<td><a id="a1" data-transition="flip" data-role="button" href="#real_control"><br/><br/>Present<br>PPT<br/><br/>
+					<td><a id="a1" data-transition="flip" data-role="button" href="/presentPPT<%=cPage%>"><br/><br/>Present<br>PPT<br/><br/>
 					</a></td>
 					<td><a id="b1" data-transition="flip" data-role="button" href="#check_comment"><br/><br/>Check<br>Comment<br/><br/>
 					</a></td>

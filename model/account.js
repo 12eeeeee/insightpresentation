@@ -8,7 +8,7 @@ var Account = new Schema({
     birthday: { type: String, default: '' },
     email:   { type: String, default: '' },
     phonenum: { type: String, default: '' },
-    sex: 	  { type: String, default: '' }
+    sex: 	  { type: String, default: '' },
 });
 
 Account.plugin(passportLocalMongoose);
