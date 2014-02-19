@@ -49,7 +49,7 @@ module.exports = function (app) {
    
         });
 
-    app.get('/Pmenu:cPage', function(req, res){
+    app.get('/Pmenu/:cPage', function(req, res){
       var currentPage = req.param('cPage');
         res.render('pmenu',
             {
@@ -67,5 +67,16 @@ module.exports = function (app) {
         res.send(currentPage);
     });
 
+    app.post('/canvas', function(req, res){
+        console.log('canvas is made');
+
+        redirect('/');
+
+    });
+
+    app.get('/canvas', function(req, res){
+        res.render('canvas', {user : req.user , Article : req.Article, cPage : req.cPage});
+
+    });
    //res.render('Plist', {user : req.user, Article : Article});
 }

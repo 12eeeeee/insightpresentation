@@ -12,13 +12,13 @@ var express = require('express')
     , swig = require('swig')
     , path = require('path')
     , mongoose = require('mongoose')
-    , passport = require('passport')
+    , passport = require('passport') //로그인 모듈 
     , LocalStrategy = require('passport-local').Strategy
-    , ejs = require('ejs');
+    , ejs = require('ejs'); // HTML <% %>
 
 var app = express();
 
-app.use(express.bodyParser());
+app.use(express.bodyParser());  //페이지간 이동 시 정보 전달 (위치가 중요 !)
 /////////////////////////////////////////////////로그인
 var Account = require('./model/account');
 passport.use(new LocalStrategy(Account.authenticate()));
@@ -126,7 +126,7 @@ if ('development' == app.get('env')) {
 }
 app.get('/', routes.index);
 app.get('/ctrReveal', routes.ctrReveal);
-app.post( '/createArticle',      routes.createArticle );
+app.post('/createArticle', routes.createArticle );
 //app.get('/reveal', routes.reveal);
 
 /*app.get('/fbauth', passport.authenticate('facebook', {scope: 'email'}));

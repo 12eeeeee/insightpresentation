@@ -78,13 +78,17 @@ module.exports = function (app) {
                     throw error;
                 }else{
                     console.log('FILE is made');
-                    res.redirect('/');
+                    res.redirect('/presentPPT');
                 }
             });
     
        
     });
 
+    app.get('/presentPPT', function(req, res){
+     console.log('HELLO PRESENT');
+        res.render('presentPPT', {user : req.user});
+    });
     app.get('/upload', function(req, res){
      console.log('get');
         res.render('index', {user : req.user});

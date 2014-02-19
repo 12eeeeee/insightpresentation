@@ -40,9 +40,10 @@ function getT(){
         
         
 			<ul data-role="listview" id="list1">
-				<li data-icon="plus"><a href="#ptinfo">Add</a></li>
+				<li data-icon="plus"><a href="/createArticle">Add</a></li>
+			<!-- 생성된 PPT목록을 HTML태그로 동적 생성 -->
 				<% Articles.forEach( function(Articles){ %>
-					<li>   <a href = "/Pmenu<%=Articles.ptname%>">  <%= Articles.ptname %></a>	</li>
+					<li>   <a href = "/Pmenu/<%=Articles.ptname%>">  <%= Articles.ptname %></a>	</li>
 				<% }) %>
 			</ul>
             <select name = "listView" id = "listView" >
