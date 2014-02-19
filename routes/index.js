@@ -4,12 +4,19 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express'});
+  res.render('index',  {title: 'Express', user: req.user, Article: req.Article, cPage : req.cPage});
+};
+
+exports.login = function(req, res){
+	  res.render('login', {title: 'Express', user: req.user, Article: req.Article, cPage : req.cPage});
+};
+
+exports.presentPPT = function(req, res){
+	  res.render('presentPPT', {title: 'Express', user: req.user, Article: req.Article, cPage : req.cPage });
 };
 
 exports.loggedin = function(req, res){
-  res.render('loggedin', {title: 'Express', user: req.user});
-
+	  res.render('loggedin',{title: 'Express', user: req.user, Article: req.Article, cPage : req.cPage});
 };
 
 exports.register = function(req, res){
@@ -22,17 +29,17 @@ exports.ctrReveal = function(req, res){
 
 };
 exports.reveal = function(req, res){
-  res.render('reveal', {title: 'Express', user: req.user});
+  res.render('reveal', {title: 'Express', user: req.user, Article: req.Article, cPage : req.cPage});
 
 };
 
 exports.upload = function(req, res){
-  res.render('upload', {title: 'Express', user: req.user});
+  res.render('upload', {title: 'Express', user: req.user, Article: req.Article, cPage : req.cPage});
 };
 
 exports.createArticle = function(req, res){
 
-  res.render('createArticle', {title: 'Express', user: req.user});
+  res.render('createArticle', {title: 'Express', user: req.user, Article: req.Article, cPage : req.cPage});
 };
 
 /*exports.reveal = function(req, res){

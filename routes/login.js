@@ -25,7 +25,7 @@ module.exports = function (app) {
             birthday : req.body.birthday,
             email    : req.body.email,
             phonenum : req.body.phonenum,
-            sex      : req.body.sex,
+            sex      : req.body.sex
 
          }), req.body.password, function(err, account) {
             if (err) {
@@ -64,34 +64,47 @@ module.exports = function (app) {
        // var url = req.body.R_URL;
         var name = req.body.R_NAME;
         var blob = req.body.R_blob;
-        console.log(name);
-        console.log(blob);
+        console.log("name=>" + name);
+        console.log("cPage=>" + req.body.cPage);
 
 
         base64Data = blob.replace(/^data:audio\/wav;base64,/,""),
         binaryData = new Buffer(base64Data, 'base64').toString('binary');
         
-        var filePath = __dirname + "\\files\\"+ name;
+        var filePath = __dirname + "\\files\\"+ name +"_"+ req.user.username + ".wav";
 
         fs.writeFile(filePath, binaryData, "binary", function(error){
                 if(error){
                     throw error;
                 }else{
                     console.log('FILE is made');
-                    res.redirect('/presentPPT');
+                    res.redirect('/presentPPT/cPage');
                 }
             });
     
-       
+       // 아티클에 파일이름 넣어보자
+          
+          Article.update({'ptname':  req.body.cPage}, {'$push':{'recordReal':filePath}})
     });
 
-    app.get('/presentPPT', function(req, res){
-     console.log('HELLO PRESENT');
-        res.render('presentPPT', {user : req.user});
-    });
-    app.get('/upload', function(req, res){
+
+     app.get('/upload', function(req, res){
      console.log('get');
-        res.render('index', {user : req.user});
+        res.render('index', {
+              user : req.user,
+              Article : req.Article,
+              cPage : req.cPage
+  
+         });
+     });
+ 
+     app.get('/presentPPT/:cPage', function(req, res){
+             console.log('post presentPPT');
+             res.render('presentPPT', {
+             user : req.user,
+             Article : req.Article,
+             cPage : req.param('cPage')
+         });
     });
     
 };

@@ -255,7 +255,7 @@ table {
 		</div>
 
 		<div data-role="content" id="wrap">
-			
+			<input type = "hidden" value = <%= user.username %> />
 				<table>
 					<% if(user) { %>
 					<div>
@@ -443,103 +443,6 @@ table {
         </div>
 <!--------------------- 발표자 리모컨 2 (실전) real_control----------------------------->
 	<!--------	실전은 녹음 하자마자 청중들 다시듣기 공유로 서버로 넘어가기 + list목록에 추가 -------->
-
-<div data-role="page" id="real_control" data-theme="b">
-	<form>
-	</form>
-
-		<div data-role="panel" data-position="right" id="menu" class="bmenu">
-			<ul data-role="listview" data-inset="true" data-theme="b">
-				<li data-role="list-divider">Insight Presentation</li>
-				<li><a href="#page" data-panel="main">Home</a></li>
-				<li><a href="#page">로그아웃</a></li>
-				<li><a href="#Plist">PPT목록</a></li>
-				<li><a href="#my" data-panel="main">마이페이지</a></li>
-			</ul>
-		</div>
-		<div data-role="header">
-			<a href="#" data-role="button" data-icon="back" data-rel="back">back</a>
-			<h1 align="center">PPT 발표모드</h1>
-			<a data-transition="flip" data-icon="grid" data-role="button" href="#menu">menu</a>       
-		</div>
-        
- <script>
-// document.write("<script type='text/javascript' src='/js/recorder.js'><"+"/script>"); 
- 	function printInfo(){
-
- 		//var ASTORE = new STORE();
- 		document.getElementById("R_NAME").value = STORE.R_NAME;
-
- 		document.getElementById("R_blob").value = STORE.R_blob;
-
- 	}
- </script>
-
-	<div data-role="content">
-	
-        <table style="width: 100%" style="height:100%">
-        	
-				<tr>
-					<td colspan=2>
-						<form id="recFrm" method="post" action="/upload" enctype="multipart/form-data" onSubmit="printInfo()">
-                     		 <div>
-           						<img id="record_" src="mic128.png" onclick="toggleRecording(this);Example1.Timer.toggle();">
-								<img id="init_" src="init.png" onclick="Example1.resetStopwatch();">
-                				<img id="save" src="save.svg" onclick="saveAudio();">
-                				<span id="stopwatch">00:00:00</span>
-                				<input type="hidden" id = "R_NAME" name="R_NAME"/>
-
-                				<input type="hidden" id = "R_blob" name="R_blob"/>
-                				<input type="image" src="save.svg" alt="Submit Form" onclick="saveAudio();"/>
-            				</div> 
-            			</form>
-					</td>
-				</tr>
-						
-
-			<tr>
-				<td colspan=2 width="100%">슬라이드보이는창</td>
-			</tr>
-				<tr>
-					<td colspan=2 width="100%">
-						<center>
-							<div data-role="controlgroup" data-type="horizontal">
-								<a href="#page3" id="back" data-role="button" data-icon="back"
-									data-inline="true">이전</a> <a href="#" id="next"
-									data-role="button" data-icon="forward" data-inline="true">다음</a>
-							</div>
-
-						</center>
-					</td>
-				</tr>
-				<tr>
-					<td colspan=2 width="100%">
-						<div data role="content">
-							<form id="rlist" method="post" action="#">
-								<div data-role="fieldcontail">
-
-									<label for="ptlist"></label> <select id="ptlist" name="ptlist"
-										data-native-menu="true">
-
-										<option value="list1">PPT1</option>
-
-										<option value="list2">PPT2</option>
-
-										<option value="list3">PPT3</option>
-
-									</select>
-								</div>
-								</form>
-								</div>
-					</td>
-				</tr>
-			</table>
-		</div>
-        <div data-role="footer" data-position="fixed">
-			<h4>&copy;Insight&nbsp;presentation</h4>
-		</div>
-        
-	</div>
 
         
 

@@ -24,7 +24,7 @@ var rafID = null;
 var analyserContext = null;
 var canvasWidth, canvasHeight;
 var recIndex = 0;
-
+var date = new Date();
 /* TODO:
 
 - offer mono option
@@ -44,8 +44,7 @@ function drawWave( buffers ) {
 }
 
 function doneEncoding( blob ) {
-    Recorder.forceDownload( blob, "myRecording" + ((recIndex<10)?"0":"") + recIndex + ".wav" );
-    recIndex++;
+    Recorder.forceDownload( blob, date.getYear()+""+date.getMonth()+""+date.getDate()+""+date.getHours()+""+date.getMinutes()+""+date.getSeconds())
 }
 
 function toggleRecording( e ) {
