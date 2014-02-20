@@ -50,6 +50,7 @@
            </div>
 
 
+<<<<<<< HEAD
           <form action = '/canvas' onSubmit = '저장 되었습니다'>
           <div data-role="controlgroup" data-type="horizontal">
               <label for="color" style="margin-left:10px" data-inline="true">Color: </label>
@@ -68,6 +69,22 @@
       </td>
             </tr>
         
+=======
+          <form action = '/canvas/<%=cPage%>' method="post" onSubmit = alert('저장 되었습니다');>
+          <div data-role="controlgroup" data-type="horizontal">
+              <label for="color" style="margin-left:10px" data-inline="true">Color: </label>
+              <input type="color" style="width:40px" bind-value-to="fill" id="picker" data-inline="true">
+              <input type="button" onclick="bgColor_()"  value="bgcolor" data-inline="true">
+              <input type="button" id="capture" onclick="capture1()" data-inline="true" value="Capture">
+              <input type="button" value=" clear All " onclick="del()" data-inline="true">
+              <input type="hidden" id="JLIST" name ="JLIST">
+              <input type="submit" value="save" onclick="save1()" data-inline="true" >
+           </div>
+        
+      </td>
+            </tr>
+         </form>
+>>>>>>> 02200914 morning update
         <tr width="100%">
         <td width="100%" >
             <div id="board"></div>
@@ -214,9 +231,16 @@
       //작업중인 슬라이드( currentSlide)에 i(로드 된 슬라이드)를 대입한다.
       }
 
+<<<<<<< HEAD
       function save(){
             alert('saved!');
             document.getElementById("JLIST").value = jList[0];
+=======
+      function save1(){
+            alert('saved!');
+            alert(jList);
+            document.getElementById("JLIST").value = jList;
+>>>>>>> 02200914 morning update
       }
 
       
